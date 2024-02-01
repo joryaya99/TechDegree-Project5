@@ -1,0 +1,22 @@
+<!-- templates/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Portfolio</title>
+</head>
+<body>
+    <h1>My Portfolio</h1>
+    <div class="projects">
+        {% for project in projects %}
+            <div class="project">
+                <h2><a href="{{ url_for('project_detail', id=project.id) }}">{{ project.title }}</a></h2>
+                <p>{{ project.short_description }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
