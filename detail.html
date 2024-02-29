@@ -1,18 +1,37 @@
-<!-- templates/detail.html -->
+{% extends 'layout.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <title>{{ project.title }} Details</title>
-</head>
-<body>
-    <h1>{{ project.title }} Details</h1>
-    <p>Date: {{ project.date }}</p>
-    <p>Description: {{ project.description }}</p>
-    <a href="{{ project.repo_link }}" target="_blank">GitHub Repo</a>
-    <a href="{{ url_for('edit_project', id=project.id) }}">Edit</a>
-</body>
-</html>
+{% block content %}
+<section class="header">
+    <h1>{{project.title}}</h1>
+    <p>{{project.date}}</p>
+    <a href="{{project.ghlink}}" class="github-btn" target="_blank">
+        <i class="fab fa-github"></i>
+        View on GitHub
+    </a>
+    <ul class="project-skills">
+        <div>
+            {% for skill in project.skills %}
+                <li>{{ skill.strip() }}</li>
+            {% endfor %}
+        </div>
+    </ul>
+</section>
+<section id="project-desc">
+    <div id="triangle5"></div>
+    <h2>Description</h2>
+    <p>
+        {{project.descrip}}
+    </p>
+    <div id="triangle6"></div>
+</section>
+<section id="edit-delete">
+    <a href="{{ url_for('edit', id=project.id) }}">
+        <i class="fas fa-edit"></i>
+        Edit
+    </a>
+    <a href="{{ url_for('delete', id=project.id) }}">
+        <i class="far fa-trash-alt"></i>
+        Delete
+    </a>
+</section>
+{% endblock %}        
