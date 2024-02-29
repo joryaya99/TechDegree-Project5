@@ -34,3 +34,14 @@ def edit_project(id):
 @app.route('/projects/<int:id>/delete')
 def delete_project(id):
     project = Project.query.get(id)
+
+@app.route('/populate')
+def populate_database():
+    project1 = Project(title='Sample Project 1', date=datetime.now(), description='This is a sample project.', skills='Flask, SQLAlchemy', repo_link='https://github.com/sample_project1')
+    project2 = Project(title='Sample Project 2', date=datetime.now(), description='Another sample project.', skills='HTML, CSS, Python', repo_link='https://github.com/sample_project2')
+
+    with app.app_context():
+        db.session.add_all([project1, project2])
+        db.session.commit()
+
+    return 'Database populated with sample projects.'
