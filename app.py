@@ -10,8 +10,8 @@ with app.app_context():
     db.create_all()
 
     if not Project.query.first():
-        project1 = Project(title='Sample Project 1', date=datetime.now(), description='This is a sample project.', skills='Flask, SQLAlchemy', repo_link='https://github.com/sample_project1')
-        project2 = Project(title='Sample Project 2', date=datetime.now(), description='Another sample project.', skills='HTML, CSS, Python', repo_link='https://github.com/sample_project2')
+        project1 = Project(title='The Number Guessing Game', date=datetime.now(), description='Built a console number guessing game that prompts the player to choose a number between a specified range of numbers. After the user guesses the correct number, the program will display the number of attempts it took them to guess correctly.', skills='Python', repo_link='https://github.com/joryaya99/TechDegree-Project-1')
+        project2 = Project(title='Basketball Stats Tool', date=datetime.now(), description='Built a console-based basketball team statistics tool to help divide up a group of players into teams.', skills='Python', repo_link='https://github.com/joryaya99/TechDegree-Project-2')
         db.session.add_all([project1, project2])
         db.session.commit()
 
