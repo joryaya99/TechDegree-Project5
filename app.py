@@ -15,6 +15,28 @@ with app.app_context():
         db.session.add_all([project1, project2])
         db.session.commit()
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/projects/<int:id>')
+def project_detail(id):
+    project = Project.query.get(id)
+    if project is None:
+        return render_template('404.html'), 404
+    else:
+        return render_template('detail.html', project=project)
+
+@app.route('/projects/<int:id>/delete', methods=['GET', 'POST'])
+def delete_project(id):
+    project = Project.query.get(id)
+    if request.method == 'POST':
+        if project:
+            db.session.delete(project)
+            db.session.commit()
+        return redirect(url_for('index'))
+    return render_template('delete_confirm.html', project=project)
+
 @app.route('/')
 def index():
     projects = Project.query.all()
@@ -23,22 +45,20 @@ def index():
 @app.route('/projects/new', methods=['GET', 'POST'])
 def create_project():
     if request.method == 'POST':
+        return redirect(url_for('index'))
+    else:
         return render_template('create.html')
-
-@app.route('/projects/<int:id>')
-def project_detail(id):
-    project = Project.query.get(id)
-    return render_template('detail.html', project=project)
 
 @app.route('/projects/<int:id>/edit', methods=['GET', 'POST'])
 def edit_project(id):
     project = Project.query.get(id)
-    if request.method == 'POST':
-        return render_template('edit.html', project=project)
-
-@app.route('/projects/<int:id>/delete')
-def delete_project(id):
-    project = Project.query.get(id)
+    if project:
+        if request.method == 'POST':
+            return redirect(url_for('project_detail', id=id))  # Redirect to the project detail page after successful edit
+        else:
+            return render_template('edit.html', project=project)
+    else:
+        return render_template('404.html'), 404
 
 @app.route('/populate')
 def populate_database():
