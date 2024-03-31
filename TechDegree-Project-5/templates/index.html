@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<section class="header">
+    <h1>Python Developer</h1>
+    <p> Dilligent, Innovative, and a Powerhouse </p>
+    <img src="/static/profile.jpg" alt="Photo of Me">
+</section>
+<section id="About">
+    <h2>About</h2>
+    <p>
+        This website represents my hard work studying the Python Programming Language with a portfolio filled with projects. I bring a blend of theoretical knowledge and hands-on experience to the world of programming.
+        My journey in the realm of Python has been an exciting one, marked by a commitment to writing clean, maintainable code that solves real-world problems.
+    </p>
+</section>
+<section id="skills">
+    <h2>Skills</h2>
+    <ul>
+        <li>Python</li>
+        <li>GitHub</li>
+        <li>SQLAlchemy</li>
+        <li>Flask</li>
+        <li>Visual Studio Code</li>
+        <li>Database Development</li>
+        <li>Data Analysis</li>
+        <li>Basic HTML</li>
+        <li>Computer-Aided Design (CAD)</li>
+    </ul>
+</section>
+<section id="projects">
+    <h2>Projects</h2>
+    <div id="project-list">
+        {% for project in projects %}
+        <div id="{{ project.id }}" class="a-project">
+            <!-- Close the <a> tag properly -->
+            <h3><a href="https://github.com/joryaya99">{{ project.title }}</a></h3>
+            <a href="{{ project.ghlink }}" class="github-btn" target="_blank">
+                View on GitHub
+            </a>
+            <p>
+                {{ project.descrip }}
+            </p>
+            <p>
+                {{ project.skills }}
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+<section id="contact">
+    <h2>Contact Me</h2>
+    <p>
+        Feel free to reach out if you are interested in my work
+    </p>
+    <p>joryaya99@gmail.com</p>
+</section>
+{% endblock %}
