@@ -4,7 +4,7 @@
 <section class="header">
     <h1>Python Developer</h1>
     <p> Dilligent, Innovative, and a Powerhouse </p>
-    <img src="/static/profile.jpg" alt="Photo of Me">
+    <img src="static/profile.jpg" alt="Photo of Me">
 </section>
 <section id="About">
     <h2>About</h2>
@@ -24,7 +24,6 @@
         <li>Database Development</li>
         <li>Data Analysis</li>
         <li>Basic HTML</li>
-        <li>Computer-Aided Design (CAD)</li>
     </ul>
 </section>
 <section id="projects">
@@ -32,10 +31,9 @@
     <div id="project-list">
         {% for project in projects %}
         <div id="{{ project.id }}" class="a-project">
-            <!-- Close the <a> tag properly -->
-            <h3><a href="https://github.com/joryaya99">{{ project.title }}</a></h3>
-            <a href="{{ project.ghlink }}" class="github-btn" target="_blank">
-                View on GitHub
+            <h3><a>{{ project.title }}</a></h3>
+            <a href="https://github.com/joryaya99" class="github-btn" target="_blank">
+                View
             </a>
             <p>
                 {{ project.descrip }}
@@ -50,7 +48,7 @@
 <section id="contact">
     <h2>Contact Me</h2>
     <p>
-        Feel free to reach out if you are interested in my work
+        Feel free to reach out if you are interested in my work !
     </p>
     <p>joryaya99@gmail.com</p>
 </section>
