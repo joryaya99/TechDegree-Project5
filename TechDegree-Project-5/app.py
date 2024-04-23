@@ -54,8 +54,7 @@ def edit_project(id):
     project = Project.query.get(id)
     if project:
         if request.method == 'POST':
-            # Logic to update the project based on form data should be added here
-            return redirect(url_for('project_detail', id=id))  # Redirect to the project detail page after successful edit
+            return redirect(url_for('project_detail', id=id))
         else:
             return render_template('edit.html', project=project)
     else:
