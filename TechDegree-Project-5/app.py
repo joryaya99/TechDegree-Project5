@@ -50,7 +50,7 @@ def create_project():
         return render_template('create.html')
 
 @app.route('/projects/<int:id>/edit', methods=['GET', 'POST'])
-def edit_project(id):
+def edit(id):
     project = Project.query.get(id)
     if project:
         if request.method == 'POST':
