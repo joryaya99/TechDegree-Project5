@@ -2,11 +2,11 @@
 Colors
 *******/
 :root {
-    --primary-text: #FFA233;
-    --secondary-text: #FFCA33;
-    --primary: #FFA233;
-    --secondary: #000000;
-    --accent: #FFCA33;
+    --primary-text: #51475c;
+    --secondary-text: #ab6c82;
+    --primary: #475c7a;
+    --secondary: #fcbb6d;
+    --accent: #d8737f;
     --white:  #fff;
 }
 
@@ -679,75 +679,4 @@ Media Queries
     #form textarea {
         width: 530px;
     }
-}
-/***********
-404 style
-***********/
-#not-found {
-    text-align: center;
-    margin-top: 100px;
-}
-
-#not-found img {
-    border-radius: 20px;
-}
-
-#not-found p {
-    margin-bottom: 100px;
-}
-
-@keyframes bounce {
-    0% {
-        transform: translate3d(0,0,0);
-    }
-    10% {
-        transform: translate3d(0,-200px,0);
-    }
-    30% {
-        transform: translate3d(0,0,0);
-    }
-    40% {
-        transform: translate3d(0,-100px,0);
-    }
-    60% {
-        transform: translate3d(0,0,0);
-    }
-    70% {
-        transform: translate3d(0,-50px,0);
-    }
-    75% {
-        transform: translate3d(0,0,0);
-    }
-    85% {
-        transform: translate3d(0,-25px,0);
-    }
-    90% {
-        transform: translate3d(0,0,0);
-    }
-    95% {
-        transform: translate3d(0,-10px,0);
-    }
-    100% {
-        transform: translate3d(0,0,0);
-    }
-}
-
-#not-found h2 i {
-    margin-left: 20px;
-    color: var(--accent);
-    animation: bounce 1.5s cubic-bezier(.5,0.05,1,.5);
-    animation-iteration-count: 1;
-    animation-direction: alternate;
-}
-
-#not-found a {
-    text-decoration: none;
-    width: 200px;
-    height: 60px;
-    padding: 10px 15px;
-}
-
-#not-found .fa-bone {
-    font-size: 14px;
-    transform: translateX(-12px) translateY(10px) rotate(135deg);
 }
