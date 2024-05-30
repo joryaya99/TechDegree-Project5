@@ -45,15 +45,29 @@ def index():
 @app.route('/projects/new', methods=['GET', 'POST'])
 def create_project():
     if request.method == 'POST':
+        title = request.form['title']
+        date = datetime.strptime(request.form['date'], '%Y-%m')
+        description = request.form['desc']
+        skills = request.form['skills']
+        github = request.form['github']
+        new_project = Project(title=title, date=date, description=description, skills=skills, repo_link=github)
+        db.session.add(new_project)
+        db.session.commit()
         return redirect(url_for('index'))
     else:
         return render_template('create.html')
 
 @app.route('/projects/<int:id>/edit', methods=['GET', 'POST'])
-def edit(id):
+def edit_project(id):
     project = Project.query.get(id)
     if project:
         if request.method == 'POST':
+            project.title = request.form['title']
+            project.date = datetime.strptime(request.form['date'], '%Y-%m')
+            project.description = request.form['desc']
+            project.skills = request.form['skills']
+            project.repo_link = request.form['github']
+            db.session.commit()
             return redirect(url_for('project_detail', id=id))
         else:
             return render_template('edit.html', project=project)
