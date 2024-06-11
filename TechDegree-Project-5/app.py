@@ -29,11 +29,10 @@ def project_detail(id):
 
 @app.route('/projects/<int:id>/delete', methods=['GET', 'POST'])
 def delete_project(id):
-    project = Project.query.get(id)
+    project = Project.query.get_or_404(id)
     if request.method == 'POST':
-        if project:
-            db.session.delete(project)
-            db.session.commit()
+        db.session.delete(project)
+        db.session.commit()
         return redirect(url_for('index'))
     return render_template('delete_confirm.html', project=project)
 
@@ -59,20 +58,16 @@ def create_project():
 
 @app.route('/projects/<int:id>/edit', methods=['GET', 'POST'])
 def edit_project(id):
-    project = Project.query.get(id)
-    if project:
-        if request.method == 'POST':
-            project.title = request.form['title']
-            project.date = datetime.strptime(request.form['date'], '%Y-%m')
-            project.description = request.form['desc']
-            project.skills = request.form['skills']
-            project.repo_link = request.form['github']
-            db.session.commit()
-            return redirect(url_for('project_detail', id=id))
-        else:
-            return render_template('edit.html', project=project)
-    else:
-        return render_template('404.html'), 404
+    project = Project.query.get_or_404(id)
+    if request.method == 'POST':
+        project.title = request.form['title']
+        project.date = datetime.strptime(request.form['date'], '%Y-%m').date()
+        project.description = request.form['description']
+        project.skills = request.form['skills']
+        project.repo_link = request.form['github']
+        db.session.commit()
+        return redirect(url_for('project_detail', id=id))
+    return render_template('edit.html', project=project)
 
 @app.route('/populate')
 def populate_database():
