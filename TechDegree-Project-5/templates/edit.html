@@ -2,25 +2,29 @@
 
 {% block content %}
 <section class="header">
-    <h1>New Project</h1>
+    <h1>Edit Project</h1>
 </section>
 <section id="form">
-    <form action="{{ url_for('edit', id=project.id) }}" method="POST">
+    <form action="{{ url_for('edit_project', id=project.id) }}" method="POST">
         <label for="title">Project Title</label>
-        <input type="text" name="title" id="title" placeholder="Project Name" value="{{ project.title }}" required>
+        <input type="text" name="title" id="title" value="{{ project.title }}" required>
+        
         <label for="date">Completion Date</label>
-        <input type="month" name="date" id="date" value="{{ project.date }}">
+        <input type="month" name="date" id="date" value="{{ project.date.strftime('%Y-%m') }}" required>
+        
         <label for="description">Description</label>
-        <textarea name="desc" id="description" cols="30" rows="20" placeholder="Description" required>{{ project.descrip }}</textarea>
-        <label for="skills-list" id="skills-label">Skills</label>
-        <p>Separate each skill by a comma</p>
-        <textarea name="skills" id="skills-list" cols="30" rows="10" placeholder="Skill, Skill" required>{{ project.skills }}</textarea>
+        <textarea name="description" id="description" required>{{ project.description }}</textarea>
+        
+        <label for="skills">Skills</label>
+        <textarea name="skills" id="skills" required>{{ project.skills }}</textarea>
+        
         <label for="github">GitHub Link</label>
-        <input type="url" name="github" id="github" placeholder="Link to the repo" value="{{ project.ghlink }}" required>
+        <input type="url" name="github" id="github" value="{{ project.repo_link }}" required>
+        
         <div>
             <button type="reset">Cancel</button>
             <button type="submit">Submit</button>
         </div>
     </form>
 </section>
-{% endblock %}       
+{% endblock %}
