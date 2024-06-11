@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<section class="header">
+    <h1>Delete Project</h1>
+</section>
+<section id="form">
+    <p>Are you sure you want to delete the project "{{ project.title }}"?</p>
+    <form action="{{ url_for('delete_project', id=project.id) }}" method="POST">
+        <button type="submit">Yes, Delete</button>
+        <a href="{{ url_for('project_detail', id=project.id) }}">Cancel</a>
+    </form>
+</section>
+{% endblock %}
