@@ -4,19 +4,26 @@
 <section class="header">
     <h1>{{ project.title }}</h1>
     <p>{{ project.date }}</p>
+    <img src="{{ url_for('static', filename='images/project_image.jpg') }}" alt="Project Image">
     <a href="{{ project.repo_link }}" class="github-btn" target="_blank">
         <i class="fab fa-github"></i>
-        View on GitHub
+        View on Github
     </a>
     <ul class="project-skills">
-        {% for skill in project.skills.split(',') %}
-            <li>{{ skill.strip() }}</li>
-        {% endfor %}
+        <div>
+            {% for skill in project.skills.split(',') %}
+                <li>{{ skill.strip() }}</li>
+            {% endfor %}
+        </div>
     </ul>
 </section>
 <section id="project-desc">
+    <div id="triangle5"></div>
     <h2>Description</h2>
-    <p>{{ project.description }}</p>
+    <p>
+        {{ project.description }}
+    </p>
+    <div id="triangle6"></div>
 </section>
 <section id="edit-delete">
     <a href="{{ url_for('edit_project', id=project.id) }}">
